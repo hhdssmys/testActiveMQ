@@ -32,7 +32,12 @@
 	    <artifactId>spring-jms</artifactId>
 	    <version>${spring.version}</version>
 	</dependency> 
-    	<dependency>
+	<dependency>
+	    <groupId>javax.jms</groupId>
+	    <artifactId>javax.jms-api</artifactId>
+	    <version>2.0.1</version>
+	</dependency>
+    <dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-test</artifactId>
 	    <version>${spring.version}</version>
@@ -46,7 +51,15 @@
      			<artifactId>spring-context</artifactId>
      			<groupId>org.springframework</groupId>
      		</exclusion>
+     		<exclusion>
+     			<artifactId>org.apache.geronimo.specs</artifactId>
+     			<groupId>geronimo-jms_1.1_spec</groupId>
+     		</exclusion>
      	</exclusions>
     </dependency>
   </dependencies>
 </project>
+<!-- 
+1.java.lang.ClassNotFoundException: javax.jms.JMSContext
+这个版本的Spring需要使用JMS 2.0版本，但spring-jms的依赖没有自动导入JMS 2.0，而activemq-core会导入JMS 1.1的依赖，这就导致出现版本问题
+ -->

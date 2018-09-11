@@ -1,0 +1,1 @@
+JmsTemplate每次发消息都会重新创建一个连接,会话和producer

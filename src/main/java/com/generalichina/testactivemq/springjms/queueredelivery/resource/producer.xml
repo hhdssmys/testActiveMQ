@@ -15,5 +15,5 @@
 	
 	</bean>
 	
-	<bean class="com.generalichina.testactivemq.springjms.queue.producer.ProducerServiceImpl" />
+	<bean id="producerService" class="com.generalichina.testactivemq.springjms.queueredelivery.producer.ProducerServiceImpl" />
 </beans>	

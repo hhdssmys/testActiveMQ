@@ -8,12 +8,12 @@
        					   http://www.springframework.org/schema/context/spring-context-4.0.xsd">
        					   <!--  http://www.w3.org/2001/XMLSchema-instance http://www.w3.org/2001/XMLSchema-instance.xsd  -->
 	<import resource="common.xml"/>
-	<!-- 用于发送消息 -->
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	<!-- 配置消息监听器类 -->
+	<bean id="consumerMessageListener" class="com.generalichina.testactivemq.springjms.queueredelivery.consumer.ConsumerMessageListener" />
+	<!-- 配置消息监听容器 jms容器spring提供 -->
+	<bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<!-- <property name="defaultDestination" ref="destinationOne" /> 配置了目的地就限制了该JmsTemplate的复用-->
-	
+		<property name="destination" ref="queueDestination" />
+		<property name="messageListener" ref="consumerMessageListener"></property>
 	</bean>
-	
-	<bean class="com.generalichina.testactivemq.springjms.queue.producer.ProducerServiceImpl" />
 </beans>	
